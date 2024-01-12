@@ -1,0 +1,22 @@
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
+dotnet new webapi --name MovieApp.WebAPI
+dotnet dev-certs https --trust
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.0.16
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0.15
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.15
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.15
+
+dotnet tool install --global dotnet-aspnet-codegenerator --version 6.0.16
+dotnet aspnet-codegenerator controller
+--model Movie
+--controllerName MoviesController
+--dataContext MovieAppContext
+--relativeFolderPath Controllers
+--restWithNoViews 
+--useAsyncActions 
+dotnet aspnet-codegenerator controller --model Movie --controllerName MoviesController --dataContext MovieAppContext --relativeFolderPath Controllers --restWithNoViews  --useAsyncActions
+
+dotnet tool install --global dotnet-ef --version 7.0.15
+dotnet ef migrations add InitialCreate
+Server=localhost,1433;Database=Database;User Id=sa;Password=Passw0rd;TrustServerCertificate=True;
+dotnet ef database update
